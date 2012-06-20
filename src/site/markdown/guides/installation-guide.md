@@ -94,23 +94,27 @@ webapp:
 ~~~
 <Context path="onebusaway-webapp" docBase="path/to/onebusaway-webapp.war">
   <Parameter name="contextConfigLocation"
-            value="file:path/to/data-sources.xml classpath:org/onebusaway/webapp/application-context-webapp.xml"
+            value="classpath:application-context-webapp.xml file:path/to/data-sources.xml"
          override="false" />
 </Context>
 ~~~
+
+For more info, see http://tomcat.apache.org/tomcat-5.5-doc/config/context.html
 
 It's important to note that when you override contextConfigLocation in this way, you'll need to additionally import the
 `application-context-webapp.xml` for the webapp you are attempting to configure (it's normally included in the
 'contextConfigLocation' entry in web.xml for the webapp, but we lose it when we override).  The location of the webapp
 is dependent on the webapps you are using:
 
+* onebusaway-combined-webapp: classpath:application-context-webapp.xml
+
+If you are deploying the webapps individually, the locations are:
+
 * onebusaway-transit-data-federation-webapp: classpath:org/onebusaway/transit_data_federation/application-context-webapp.xml
 * onebusaway-api-webapp: classpath:org/onebusaway/api/application-context-webapp.xml
 * onebusaway-phone-webapp: classpath:org/onebusaway/phone/application-context-webapp.xml
 * onebusaway-sms-webapp: classpath:org/onebusaway/sms/application-context-webapp.xml
 * onebusaway-webapp: classpath:org/onebusaway/webapp/application-context-webapp.xml
- 
-For more info, see http://tomcat.apache.org/tomcat-5.5-doc/config/context.html
 
 ## Configuring the Combined Webapp
 
@@ -140,6 +144,15 @@ At minimum, you need to add the following entries to your `data-sources.xml` fil
 The primary configuration element sets your `bundlePath`, pointing to your [Transit Data Bundle](transit-data-bundle-guide.html).
 In addition, you might optionally consider [changing the default database](database-configuration-guide.html) or
 [adding a real-time data source](realtime-configuration-guide.html).
+
+## Specific Confugration Guides
+
+For configuration details for each of user-interface components, see the specific configuration guides:
+
+* [API Config](api-webapp-configuration-guide.html)
+* [SMS Config](sms-webapp-configuration-guide.html)
+* [Phone Config](phone-webapp-configuration-guide.html)
+* [Web Config](webapp-configuration-guide.html)
 
 ## Configuring Webapps Independently
 
@@ -225,9 +238,3 @@ Each user interface webapp `data-sources.xml` should include these common entrie
 
 </beans>
 ~~~
-
-## Specific Installation Guides
-
-For specific installation and configuration details for each of the webapps, see the specific installation guides:
-
-* [onebusaway-webapp installation guide](webapp-installation-guide.html)
