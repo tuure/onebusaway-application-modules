@@ -40,6 +40,13 @@
       <groupId>com.caucho</groupId>
       <artifactId>hessian</artifactId>
     </dependency>
+	
+	<!-- Database -->
+	<dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>5.0.5</version>
+    </dependency>
 
     <!-- Struts 2 -->
     <dependency>
